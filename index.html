@@ -229,6 +229,10 @@
   .formula{background:var(--soft-white);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
   .formula h4{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600}
   .weight{margin-top:18px}
+  .weight .w-grp{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin:18px 0 10px}
+  .weight .w-grp:first-child{margin-top:2px}
+  .weight .w-grp.cov{color:var(--neptune-deep)}
+  .weight .w-grp.res{color:var(--digitalis-deep)}
   .weight .w-row{margin-bottom:14px}
   .weight .w-top{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}
   .weight .w-top .p{color:var(--neptune-deep);font-weight:700}
@@ -504,9 +508,9 @@
         <div class="geo">The final index is the <b>geometric mean</b> of Coverage and Resonance: <code>Score = √(Coverage × Resonance)</code>. Unlike a simple average, it demands strength on both axes. Volume alone can't carry a story if audiences never engaged, and a handful of well-read articles can't carry it without real coverage behind them.</div>
       </div>
       <div class="formula">
-        <h4>Example weighting · Media Attention Score</h4>
+        <h4>Inside the score · the four components</h4>
         <div class="weight" id="weightBars"></div>
-        <p style="font-size:13px;color:var(--muted);margin-top:6px;font-weight:300">An illustrative split of a combined attention score across the underlying signals.</p>
+        <p style="font-size:13px;color:var(--muted);margin-top:6px;font-weight:300">Within each axis the two components are averaged equally. Coverage and Resonance then combine as a geometric mean — √(Coverage × Resonance) — not a weighted sum, so a weak axis pulls the whole score down.</p>
       </div>
     </div>
     <div class="datanote">
@@ -933,8 +937,14 @@ function buildSpotlights(){
 }
 /* ---------------- METHOD WEIGHTS ---------------- */
 function buildWeights(){
-  const w=[{k:"Tier 1 Penetration",p:30,c:"#6446FF"},{k:"Share of Voice",p:25,c:"#8060FF"},{k:"Readership",p:20,c:"#AF46B4"},{k:"Coverage Longevity",p:15,c:"#FFC864"},{k:"Sentiment",p:10,c:"#FF585D"}];
-  document.getElementById('weightBars').innerHTML=w.map(x=>`<div class="w-row"><div class="w-top"><span>${x.k}</span><span class="p data">${x.p}%</span></div><div class="track"><span style="width:${x.p}%;background:${x.c}"></span></div></div>`).join("");
+  const groups=[
+    {name:"Coverage",cls:"cov",items:[{k:"Article volume",c:"#6446FF"},{k:"Tier 1 penetration",c:"#8060FF"}]},
+    {name:"Resonance",cls:"res",items:[{k:"Average readership",c:"#AF46B4"},{k:"Sentiment intensity",c:"#C466C8"}]}
+  ];
+  document.getElementById('weightBars').innerHTML=groups.map(g=>
+    `<div class="w-grp ${g.cls}">${g.name}</div>`+
+    g.items.map(x=>`<div class="w-row"><div class="w-top"><span>${x.k}</span><span class="p data">½ of axis</span></div><div class="track"><span style="width:50%;background:${x.c}"></span></div></div>`).join("")
+  ).join("");
 }
 /* ---------------- DEMO FORM ---------------- */
 function initForm(){
