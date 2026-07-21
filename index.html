@@ -636,28 +636,30 @@
 <script>
 /* ---------------- DATA ---------------- */
 const EVENTS = [
-  {event:"Luigi Mangione Trial",cat:"Crime & Justice",volume:50297,ns:-63.8,t1pen:2.267,avgread:23899,coverage:0.6095,resonance:0.4965,score:0.55},
-  {event:"Epstein Files",cat:"Politics",volume:179006,ns:-80.58,t1pen:2.653,avgread:51893,coverage:0.8281,resonance:0.7598,score:0.79},
-  {event:"Venezuela / Maduro capture",cat:"Politics",volume:62606,ns:-20.95,t1pen:2.032,avgread:28054,coverage:0.5693,resonance:0.3193,score:0.43},
-  {event:"Greenland",cat:"Politics",volume:146782,ns:-85.43,t1pen:2.295,avgread:43857,coverage:0.717,resonance:0.7451,score:0.73},
-  {event:"Nancy Guthrie Disappearance",cat:"Crime & Justice",volume:9122,ns:8.32,t1pen:2.642,avgread:96288,coverage:0.5466,resonance:0.5416,score:0.54},
-  {event:"DHS Shutdown",cat:"Politics",volume:65658,ns:-45.87,t1pen:2.303,avgread:39466,coverage:0.6438,resonance:0.5229,score:0.58},
-  {event:"USA 250th Birthday",cat:"Society",volume:104877,ns:-47.03,t1pen:2.410,avgread:48741,coverage:0.7154,resonance:0.5776,score:0.64},
-  {event:"Juneteenth",cat:"Society",volume:35149,ns:55.06,t1pen:1.175,avgread:21448,coverage:0.2941,resonance:0.4277,score:0.35},
-  {event:"Met Gala",cat:"Culture",volume:29853,ns:33.38,t1pen:0.965,avgread:24383,coverage:0.2246,resonance:0.349,score:0.28},
-  {event:"Pride Month",cat:"Society",volume:47804,ns:40.39,t1pen:0.856,avgread:23222,coverage:0.2405,resonance:0.3728,score:0.30},
-  {event:"Memorial Day",cat:"Society",volume:5381,ns:64.68,t1pen:0.781,avgread:22003,coverage:0.0166,resonance:0.4817,score:0.09},
-  {event:"Amanda Batula & West Wilson",cat:"Culture",volume:10189,ns:-8.83,t1pen:0.805,avgread:11101,coverage:0.0827,resonance:0.0442,score:0.06},
-  {event:"FIFA World Cup",cat:"Sports",volume:1123394,ns:26.41,t1pen:0.716,avgread:12656,coverage:0.5,resonance:0.1624,score:0.28},
-  {event:"Spirit Airlines Shutdown",cat:"Business",volume:48773,ns:-50.19,t1pen:2.426,avgread:20498,coverage:0.6476,resonance:0.3929,score:0.50},
-  {event:"Devil Wears Prada 2",cat:"Culture",volume:92830,ns:39.01,t1pen:1.114,avgread:14941,coverage:0.3693,resonance:0.2638,score:0.31},
-  {event:"Hantavirus",cat:"Health & Climate",volume:298577,ns:12.2,t1pen:1.161,avgread:37823,coverage:0.4908,resonance:0.3447,score:0.41},
-  {event:"Cannes Film Festival",cat:"Culture",volume:75710,ns:49.08,t1pen:1.202,avgread:15011,coverage:0.3729,resonance:0.3152,score:0.34},
-  {event:"European Heatwave",cat:"Health & Climate",volume:387523,ns:13.93,t1pen:0.733,avgread:27041,coverage:0.4047,resonance:0.2757,score:0.33},
-  {event:"DR Congo Ebola Outbreak",cat:"Health & Climate",volume:108043,ns:25.91,t1pen:0.953,avgread:15323,coverage:0.342,resonance:0.2042,score:0.26},
-  {event:"Jaxson Dart & Trump",cat:"Sports",volume:441,ns:-87.11,t1pen:3.628,avgread:25848,coverage:0.5176,resonance:0.6312,score:0.57},
-  {event:"SpaceX IPO",cat:"Business",volume:181842,ns:4.21,t1pen:3.904,avgread:15665,coverage:1.1525,resonance:0.1008,score:0.34},
-  {event:"NBA Finals",cat:"Sports",volume:637669,ns:20.24,t1pen:1.324,avgread:19838,coverage:0.6038,resonance:0.2356,score:0.38}
+  {event:"FIFA World Cup",cat:"Sports",volume:1123394,ns:26.41,t1pen:0.7161,avgread:12656,coverage:0.5,resonance:0.1321,score:0.26},
+  {event:"Epstein Files",cat:"Politics",volume:179006,ns:-80.58,t1pen:2.653,avgread:51893,coverage:0.6319,resonance:0.7506,score:0.69},
+  {event:"NBA Finals",cat:"Sports",volume:637669,ns:20.24,t1pen:1.3236,avgread:19838,coverage:0.5423,resonance:0.2119,score:0.34},
+  {event:"USA 250th Birthday",cat:"Society",volume:104877,ns:-47.03,t1pen:2.4104,avgread:48741,coverage:0.5438,resonance:0.5674,score:0.56},
+  {event:"Hantavirus",cat:"Health & Climate",volume:298577,ns:12.2,t1pen:1.1608,avgread:37823,coverage:0.4457,resonance:0.3308,score:0.38},
+  {event:"Nancy Guthrie Disappearance",cat:"Crime & Justice",volume:9122,ns:8.32,t1pen:2.642,avgread:96288,coverage:0.3515,resonance:0.5416,score:0.44},
+  {event:"Memorial Day",cat:"Society",volume:5381,ns:64.68,t1pen:0.7805,avgread:22003,coverage:0.0101,resonance:0.4597,score:0.07},
+  {event:"Met Gala",cat:"Culture",volume:29853,ns:33.38,t1pen:0.9647,avgread:24383,coverage:0.1994,resonance:0.3285,score:0.26},
+  {event:"Venezuela / Maduro capture",cat:"Politics",volume:62606,ns:-20.95,t1pen:2.0318,avgread:28054,coverage:0.4361,resonance:0.3009,score:0.36},
+  {event:"SpaceX IPO",cat:"Business",volume:181842,ns:4.21,t1pen:3.9039,avgread:15665,coverage:0.8295,resonance:0.0736,score:0.25},
+  {event:"DHS Shutdown",cat:"Politics",volume:65658,ns:-45.87,t1pen:2.3028,avgread:39466,coverage:0.483,resonance:0.5096,score:0.5},
+  {event:"Greenland",cat:"Politics",volume:146782,ns:-85.43,t1pen:2.2946,avgread:43857,coverage:0.5571,resonance:0.7334,score:0.64},
+  {event:"Devil Wears Prada 2",cat:"Culture",volume:92830,ns:39.01,t1pen:1.1139,avgread:14941,coverage:0.329,resonance:0.2359,score:0.28},
+  {event:"Cannes Film Festival",cat:"Culture",volume:75710,ns:49.08,t1pen:1.202,avgread:15011,coverage:0.3237,resonance:0.2874,score:0.31},
+  {event:"European Heatwave",cat:"Health & Climate",volume:387523,ns:13.93,t1pen:0.7329,avgread:27041,coverage:0.403,resonance:0.2567,score:0.32},
+  {event:"Luigi Mangione Trial",cat:"Crime & Justice",volume:50297,ns:-63.8,t1pen:2.2665,avgread:23899,coverage:0.4524,resonance:0.4756,score:0.46},
+  {event:"Spirit Airlines Shutdown",cat:"Business",volume:48773,ns:-50.19,t1pen:2.4255,avgread:20498,coverage:0.4745,resonance:0.3698,score:0.42},
+  {event:"DR Congo Ebola Outbreak",cat:"Health & Climate",volume:108043,ns:25.91,t1pen:0.9533,avgread:15323,coverage:0.318,resonance:0.1767,score:0.24},
+  {event:"Juneteenth",cat:"Society",volume:35149,ns:55.06,t1pen:1.175,avgread:21448,coverage:0.2477,resonance:0.4053,score:0.32},
+  {event:"Amanda Batula & West Wilson",cat:"Culture",volume:10189,ns:-8.83,t1pen:0.8048,avgread:11101,coverage:0.0737,resonance:0.0118,score:0.03},
+  {event:"Pride Month",cat:"Society",volume:47804,ns:40.39,t1pen:0.8556,avgread:23222,coverage:0.2263,resonance:0.3515,score:0.28},
+  {event:"Jaxson Dart & Trump",cat:"Sports",volume:441,ns:-87.11,t1pen:3.6281,avgread:25848,coverage:0.2226,resonance:0.6115,score:0.37},
+  {event:"US-Iran War",cat:"Politics",volume:199486,ns:-18.01,t1pen:0.9324,avgread:49246,coverage:0.3721,resonance:0.4248,score:0.4},
+  {event:"Russia-Ukraine War",cat:"Politics",volume:252641,ns:-19.98,t1pen:0.5822,avgread:31443,coverage:0.3393,resonance:0.3241,score:0.33}
 ];
 /* indicative timeline windows: f=fixed calendar date, else running story */
 const TL={
@@ -671,12 +673,13 @@ const TL={
  "Amanda Batula & West Wilson":{s:"2026-05-14",d:8,f:false},"Spirit Airlines Shutdown":{s:"2026-06-05",d:12,f:false},
  "Devil Wears Prada 2":{s:"2026-05-08",d:22,f:false},"Hantavirus":{s:"2026-05-01",d:20,f:false},
  "European Heatwave":{s:"2026-06-26",d:20,f:false},"DR Congo Ebola Outbreak":{s:"2026-05-05",d:28,f:false},
- "Jaxson Dart & Trump":{s:"2026-06-22",d:6,f:false},"SpaceX IPO":{s:"2026-06-28",d:12,f:false}
+ "Jaxson Dart & Trump":{s:"2026-06-22",d:6,f:false},"SpaceX IPO":{s:"2026-06-28",d:12,f:false},
+ "Russia-Ukraine War":{s:"2026-04-01",d:118,f:false},"US-Iran War":{s:"2026-06-13",d:32,f:false}
 };
 EVENTS.forEach(e=>{e.tl=TL[e.event];});
 /* category takeaways (data-true) */
 const SOWHAT={
- "Politics":"The quarter's heavyweight. Politics tops the field on Tier 1 reach, sentiment charge, and volume at once: <b>loud, divisive, and impossible for agenda-setting outlets to ignore</b>.",
+ "Politics":"The quarter's heavyweight. Politics leads every beat on average attention score, spanning divisive geopolitics from the Epstein Files to the Russia-Ukraine and US-Iran wars: <b>loud, contentious, and impossible for agenda-setting outlets to ignore</b>.",
  "Crime & Justice":"Small in volume, huge in pull. The fewest stories of any beat, yet the <b>highest readership per article</b>. When audiences click, they click on this.",
  "Business":"All coverage, little conversation. The deepest Tier 1 penetration of any category, but among the <b>lowest readership and flattest sentiment</b>. Column inches that rarely convert to eyeballs.",
  "Sports":"Broad by design. Enormous volume and sharp event-driven spikes, but <b>thin engagement per article</b> once the final whistle blows.",
@@ -729,7 +732,7 @@ const GEO_D={w:800,h:560,ml:66,mr:34,mt:38,mb:58,fL:13,fA:11.5,rMin:6,rSpan:11,q
 const GEO_M={w:412,h:496,ml:44,mr:18,mt:32,mb:48,fL:15,fA:12.5,rMin:5,rSpan:12,qOff:18};
 let GEO=GEO_D;
 function pickGeo(){return (window.innerWidth||800)<=560?GEO_M:GEO_D;}
-const X_MAX=1.2,Y_MAX=0.8;
+const X_MAX=0.9,Y_MAX=0.8;
 const sx=c=>GEO.ml+(c/X_MAX)*(GEO.w-GEO.ml-GEO.mr);
 const sy=r=>GEO.mt+(1-r/Y_MAX)*(GEO.h-GEO.mt-GEO.mb);
 const lMin=Math.log10(Math.min(...EVENTS.map(e=>e.volume))),lMax=Math.log10(Math.max(...EVENTS.map(e=>e.volume)));
