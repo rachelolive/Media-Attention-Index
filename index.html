@@ -222,6 +222,19 @@
   .spot.sleeper{background:linear-gradient(150deg,#FFD98A,#FFC864);color:#4a3410}
   .spot.shallow{background:linear-gradient(150deg,#6446FF,#4A2FE0);color:#fff}
   @media(max-width:820px){.spot-grid{grid-template-columns:1fr}}
+  /* Dwell time */
+  .dwell-sec{background:var(--fog)}
+  .dwell-list{margin-top:52px;display:flex;flex-direction:column;gap:14px}
+  .dwell-row{display:grid;grid-template-columns:210px 1fr 96px;gap:20px;align-items:center;cursor:pointer;padding:6px 8px;border-radius:10px;transition:background .15s}
+  .dwell-row:hover{background:var(--fog-2)}
+  .dwell-row .nm{font-weight:600;font-size:14.5px;letter-spacing:-.01em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dwell-row .nm small{display:block;font-weight:400;font-size:11px;color:var(--muted-2);letter-spacing:0}
+  .dwell-row .track{height:13px;background:var(--soft-white);border:1px solid var(--line);border-radius:7px;overflow:hidden}
+  .dwell-row .track>span{display:block;height:100%;border-radius:7px}
+  .dwell-row .val{text-align:right;font-weight:700;font-size:15px;color:var(--warm-black)}
+  .dwell-row .val small{font-weight:400;color:var(--muted-2);font-size:11px}
+  .dwell-note{margin-top:26px;font-size:13px;color:var(--muted);font-weight:300;max-width:80ch}
+  @media(max-width:560px){.dwell-row{grid-template-columns:120px 1fr 72px;gap:12px}.dwell-row .nm{font-size:13px}}
   /* Method */
   .method-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;margin-top:52px;align-items:start}
   .method-copy p{color:var(--muted);font-size:15.5px;font-weight:300;margin-bottom:16px}
@@ -251,8 +264,8 @@
   .rel-card:hover{transform:translateY(-3px);box-shadow:0 22px 42px -24px rgba(47,47,47,.45);border-color:#d6d3c7}
   .rel-card .ic{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center}
   .rel-card.c1 .ic{background:#ece9ff}.rel-card.c2 .ic{background:#f6e6f6}.rel-card.c3 .ic{background:#ffe6e7}
-  .rel-thumb{width:100%;height:158px;object-fit:cover;border-radius:10px;display:block;background:var(--fog-2);border:1px solid var(--line)}
-  .rel-card h3{font-size:19px;margin-top:16px}
+  .rel-thumb{width:100%;height:158px;object-fit:cover;border-radius:10px;display:block;background:var(--fog-2);border:1px solid var(--line);margin-bottom:12px}
+  .rel-card h3{font-size:19px;margin-top:28px}
   .rel-card p{color:var(--muted);font-size:14px;margin-top:10px;font-weight:300}
   .rel-card .go{margin-top:auto;padding-top:16px;font-weight:600;font-size:14px;display:inline-flex;gap:7px;align-items:center}
   .rel-card.c1 .go{color:var(--neptune-deep)}.rel-card.c2 .go{color:var(--digitalis-deep)}.rel-card.c3 .go{color:var(--signal-red-deep)}
@@ -331,6 +344,7 @@
       <a class="link" href="#index">The index</a>
       <a class="link" href="#category">By category</a>
       <a class="link" href="#rankings">Rankings</a>
+      <a class="link" href="#dwell">Dwell time</a>
       <a class="link" href="#method">Method</a>
       <a class="btn" href="#demo">Request a demo</a>
     </nav>
@@ -498,6 +512,19 @@
     <div class="spot-grid" id="spotGrid"></div>
   </div>
 </section>
+<hr class="divider" />
+<!-- DWELL TIME -->
+<section class="dwell-sec" id="dwell">
+  <div class="wrap">
+    <div class="kicker-row">
+      <span class="eyebrow">A second attention signal</span>
+      <h2 class="big">Reach is who showed up. Dwell time is who stayed.</h2>
+      <p class="sub">Readership counts how many people opened a story. Dwell time, the average seconds a reader spends on the page, measures how far they actually got. Two stories with identical reach can hold attention very differently.</p>
+    </div>
+    <div class="dwell-list" id="dwellList"></div>
+    <p class="dwell-note">Average time on page, from publisher on-page analytics. Available for the 12 stories tracked in Signal AI and Memo's Q2 2026 macro-trends dataset; other events on this page were not measured for dwell time.</p>
+  </div>
+</section>
 <!-- METHOD -->
 <section id="method" class="bg-fog">
   <div class="wrap">
@@ -510,7 +537,7 @@
         <p><b>Coverage</b> combines total article volume with Tier 1 penetration. Volume is log-adjusted before scaling, so a single outsized story doesn't compress the differences among the rest. An event can score well for being widely covered, for landing in influential outlets, or both.</p>
         <p><b>Resonance</b> combines verified readership per article with the emotional intensity of coverage, measured as the magnitude of net sentiment regardless of direction. Strong negative coverage commands as much attention as strong positive coverage; only neutral, routine coverage scores low.</p>
         <p>Each component is scaled from 0 to 1 <b>relative to this event set</b>, with the top event on a measure anchored at 1 and the lowest at 0. Scores compare events against each other, not against a fixed external benchmark, and shift as events are added or removed.</p>
-        <div class="geo">The final index is the <b>geometric mean</b> of Coverage and Resonance: <code>Score = √(Coverage × Resonance)</code>. Unlike a simple average, it demands strength on both axes. Volume alone can't carry a story if audiences never engaged, and a handful of well-read articles can't carry it without real coverage behind them.</div>
+        <div class="geo">The final index is the <b>geometric mean</b> of Coverage and Resonance: <code>Score = √(Coverage × Resonance) × 100</code>, expressed on a 1–100 scale. Unlike a simple average, it demands strength on both axes. Volume alone can't carry a story if audiences never engaged, and a handful of well-read articles can't carry it without real coverage behind them.</div>
       </div>
       <div class="formula">
         <h4>Inside the score · the four components</h4>
@@ -636,30 +663,30 @@
 <script>
 /* ---------------- DATA ---------------- */
 const EVENTS = [
-  {event:"FIFA World Cup",cat:"Sports",volume:1123394,ns:26.41,t1pen:0.7161,avgread:12656,coverage:0.5,resonance:0.1321,score:0.26},
-  {event:"Epstein Files",cat:"Politics",volume:179006,ns:-80.58,t1pen:2.653,avgread:51893,coverage:0.6319,resonance:0.7506,score:0.69},
-  {event:"NBA Finals",cat:"Sports",volume:637669,ns:20.24,t1pen:1.3236,avgread:19838,coverage:0.5423,resonance:0.2119,score:0.34},
-  {event:"USA 250th Birthday",cat:"Society",volume:104877,ns:-47.03,t1pen:2.4104,avgread:48741,coverage:0.5438,resonance:0.5674,score:0.56},
-  {event:"Hantavirus",cat:"Health & Climate",volume:298577,ns:12.2,t1pen:1.1608,avgread:37823,coverage:0.4457,resonance:0.3308,score:0.38},
-  {event:"Nancy Guthrie Disappearance",cat:"Crime & Justice",volume:9122,ns:8.32,t1pen:2.642,avgread:96288,coverage:0.3515,resonance:0.5416,score:0.44},
-  {event:"Memorial Day",cat:"Society",volume:5381,ns:64.68,t1pen:0.7805,avgread:22003,coverage:0.0101,resonance:0.4597,score:0.07},
-  {event:"Met Gala",cat:"Culture",volume:29853,ns:33.38,t1pen:0.9647,avgread:24383,coverage:0.1994,resonance:0.3285,score:0.26},
-  {event:"Venezuela / Maduro capture",cat:"Politics",volume:62606,ns:-20.95,t1pen:2.0318,avgread:28054,coverage:0.4361,resonance:0.3009,score:0.36},
-  {event:"SpaceX IPO",cat:"Business",volume:181842,ns:4.21,t1pen:3.9039,avgread:15665,coverage:0.8295,resonance:0.0736,score:0.25},
-  {event:"DHS Shutdown",cat:"Politics",volume:65658,ns:-45.87,t1pen:2.3028,avgread:39466,coverage:0.483,resonance:0.5096,score:0.5},
-  {event:"Greenland",cat:"Politics",volume:146782,ns:-85.43,t1pen:2.2946,avgread:43857,coverage:0.5571,resonance:0.7334,score:0.64},
-  {event:"Devil Wears Prada 2",cat:"Culture",volume:92830,ns:39.01,t1pen:1.1139,avgread:14941,coverage:0.329,resonance:0.2359,score:0.28},
-  {event:"Cannes Film Festival",cat:"Culture",volume:75710,ns:49.08,t1pen:1.202,avgread:15011,coverage:0.3237,resonance:0.2874,score:0.31},
-  {event:"European Heatwave",cat:"Health & Climate",volume:387523,ns:13.93,t1pen:0.7329,avgread:27041,coverage:0.403,resonance:0.2567,score:0.32},
-  {event:"Luigi Mangione Trial",cat:"Crime & Justice",volume:50297,ns:-63.8,t1pen:2.2665,avgread:23899,coverage:0.4524,resonance:0.4756,score:0.46},
-  {event:"Spirit Airlines Shutdown",cat:"Business",volume:48773,ns:-50.19,t1pen:2.4255,avgread:20498,coverage:0.4745,resonance:0.3698,score:0.42},
-  {event:"DR Congo Ebola Outbreak",cat:"Health & Climate",volume:108043,ns:25.91,t1pen:0.9533,avgread:15323,coverage:0.318,resonance:0.1767,score:0.24},
-  {event:"Juneteenth",cat:"Society",volume:35149,ns:55.06,t1pen:1.175,avgread:21448,coverage:0.2477,resonance:0.4053,score:0.32},
-  {event:"Amanda Batula & West Wilson",cat:"Culture",volume:10189,ns:-8.83,t1pen:0.8048,avgread:11101,coverage:0.0737,resonance:0.0118,score:0.03},
-  {event:"Pride Month",cat:"Society",volume:47804,ns:40.39,t1pen:0.8556,avgread:23222,coverage:0.2263,resonance:0.3515,score:0.28},
-  {event:"Jaxson Dart & Trump",cat:"Sports",volume:441,ns:-87.11,t1pen:3.6281,avgread:25848,coverage:0.2226,resonance:0.6115,score:0.37},
-  {event:"US-Iran War",cat:"Politics",volume:199486,ns:-18.01,t1pen:0.9324,avgread:49246,coverage:0.3721,resonance:0.4248,score:0.4},
-  {event:"Russia-Ukraine War",cat:"Politics",volume:252641,ns:-19.98,t1pen:0.5822,avgread:31443,coverage:0.3393,resonance:0.3241,score:0.33}
+  {event:"FIFA World Cup",cat:"Sports",volume:1123394,ns:26.41,t1pen:0.7161,avgread:12656,coverage:0.5202,resonance:0.1624,score:0.29},
+  {event:"Epstein Files",cat:"Politics",volume:179006,ns:-80.58,t1pen:2.653,avgread:51893,coverage:0.6946,resonance:0.7598,score:0.73},
+  {event:"NBA Finals",cat:"Sports",volume:637669,ns:20.24,t1pen:1.3236,avgread:19838,coverage:0.5755,resonance:0.2356,score:0.37},
+  {event:"USA 250th Birthday",cat:"Society",volume:104877,ns:-47.03,t1pen:2.4104,avgread:48741,coverage:0.624,resonance:0.5776,score:0.6},
+  {event:"Hantavirus",cat:"Health & Climate",volume:298577,ns:12.2,t1pen:1.1608,avgread:37823,coverage:0.5026,resonance:0.3447,score:0.42},
+  {event:"Nancy Guthrie Disappearance",cat:"Crime & Justice",volume:9122,ns:8.32,t1pen:2.642,avgread:96288,coverage:0.5032,resonance:0.5416,score:0.52},
+  {event:"Memorial Day",cat:"Society",volume:5381,ns:64.68,t1pen:0.7805,avgread:22003,coverage:0.1893,resonance:0.4817,score:0.3},
+  {event:"Met Gala",cat:"Culture",volume:29853,ns:33.38,t1pen:0.9647,avgread:24383,coverage:0.3263,resonance:0.349,score:0.34},
+  {event:"Venezuela / Maduro capture",cat:"Politics",volume:62606,ns:-20.95,t1pen:2.0318,avgread:28054,coverage:0.5341,resonance:0.3193,score:0.41},
+  {event:"SpaceX IPO",cat:"Business",volume:181842,ns:4.21,t1pen:3.9039,avgread:15665,coverage:0.8839,resonance:0.1008,score:0.3},
+  {event:"DHS Shutdown",cat:"Politics",volume:65658,ns:-45.87,t1pen:2.3028,avgread:39466,coverage:0.578,resonance:0.5229,score:0.55},
+  {event:"Greenland",cat:"Politics",volume:146782,ns:-85.43,t1pen:2.2946,avgread:43857,coverage:0.628,resonance:0.7451,score:0.68},
+  {event:"Devil Wears Prada 2",cat:"Culture",volume:92830,ns:39.01,t1pen:1.1139,avgread:14941,coverage:0.4211,resonance:0.2638,score:0.33},
+  {event:"Cannes Film Festival",cat:"Culture",volume:75710,ns:49.08,t1pen:1.202,avgread:15011,coverage:0.4213,resonance:0.3152,score:0.36},
+  {event:"European Heatwave",cat:"Health & Climate",volume:387523,ns:13.93,t1pen:0.7329,avgread:27041,coverage:0.4548,resonance:0.2757,score:0.35},
+  {event:"Luigi Mangione Trial",cat:"Crime & Justice",volume:50297,ns:-63.8,t1pen:2.2665,avgread:23899,coverage:0.5555,resonance:0.4965,score:0.53},
+  {event:"Spirit Airlines Shutdown",cat:"Business",volume:48773,ns:-50.19,t1pen:2.4255,avgread:20498,coverage:0.5775,resonance:0.3929,score:0.48},
+  {event:"DR Congo Ebola Outbreak",cat:"Health & Climate",volume:108043,ns:25.91,t1pen:0.9533,avgread:15323,coverage:0.4066,resonance:0.2042,score:0.29},
+  {event:"Juneteenth",cat:"Society",volume:35149,ns:55.06,t1pen:1.175,avgread:21448,coverage:0.3684,resonance:0.4277,score:0.4},
+  {event:"Amanda Batula & West Wilson",cat:"Culture",volume:10189,ns:-8.83,t1pen:0.8048,avgread:11101,coverage:0.2337,resonance:0.0442,score:0.1},
+  {event:"Pride Month",cat:"Society",volume:47804,ns:40.39,t1pen:0.8556,avgread:23222,coverage:0.3399,resonance:0.3728,score:0.36},
+  {event:"Jaxson Dart & Trump",cat:"Sports",volume:441,ns:-87.11,t1pen:3.6281,avgread:25848,coverage:0.4585,resonance:0.6312,score:0.54},
+  {event:"US-Iran War",cat:"Politics",volume:199486,ns:-18.01,t1pen:0.9324,avgread:49246,coverage:0.4425,resonance:0.4349,score:0.44},
+  {event:"Russia-Ukraine War",cat:"Politics",volume:252641,ns:-19.98,t1pen:0.5822,avgread:31443,coverage:0.4049,resonance:0.3409,score:0.37}
 ];
 /* indicative timeline windows: f=fixed calendar date, else running story */
 const TL={
@@ -692,6 +719,8 @@ const median=arr=>{const s=[...arr].sort((a,b)=>a-b);const m=Math.floor(s.length
 const COV_MED=median(EVENTS.map(e=>e.coverage)), RES_MED=median(EVENTS.map(e=>e.resonance));
 const commas=n=>n.toLocaleString('en-US');
 const fmtVol=v=>v>=1e6?(v/1e6).toFixed(2)+"M":v>=1e3?Math.round(v/1e3)+"k":v;
+/* Media Attention Score displayed on a 1–100 scale */
+const fmtScore=s=>Math.max(1,Math.round(s*100));
 const QUAD={
  defining:{key:"defining",label:"Defining",fill:"#FF585D",ink:"#D8353B"},
  sleeper:{key:"sleeper",label:"Sleeper",fill:"#FFC864",ink:"#B67A0E"},
@@ -725,14 +754,14 @@ function ttHTML(e){
       <div class="met"><span class="lab">Volume</span><span class="val data">${commas(e.volume)}</span></div>
       <div class="met"><span class="lab">Net sent.</span><span class="val data" style="color:${nsCol}">${e.ns>0?'+':''}${e.ns}</span></div>
     </div>
-    <div class="score-row"><span class="label" style="color:#94908a">Attention score</span><span class="s data" style="color:${e.quad.ink}">${e.score.toFixed(2)}</span></div>`;
+    <div class="score-row"><span class="label" style="color:#94908a">Attention score</span><span class="s data" style="color:${e.quad.ink}">${fmtScore(e.score)}</span></div>`;
 }
 /* ---------------- SCATTER ---------------- */
 const GEO_D={w:800,h:560,ml:66,mr:34,mt:38,mb:58,fL:13,fA:11.5,rMin:6,rSpan:11,qOff:20};
 const GEO_M={w:412,h:496,ml:44,mr:18,mt:32,mb:48,fL:15,fA:12.5,rMin:5,rSpan:12,qOff:18};
 let GEO=GEO_D;
 function pickGeo(){return (window.innerWidth||800)<=560?GEO_M:GEO_D;}
-const X_MAX=0.9,Y_MAX=0.8;
+const X_MAX=0.95,Y_MAX=0.8;
 const sx=c=>GEO.ml+(c/X_MAX)*(GEO.w-GEO.ml-GEO.mr);
 const sy=r=>GEO.mt+(1-r/Y_MAX)*(GEO.h-GEO.mt-GEO.mb);
 const lMin=Math.log10(Math.min(...EVENTS.map(e=>e.volume))),lMax=Math.log10(Math.max(...EVENTS.map(e=>e.volume)));
@@ -764,7 +793,7 @@ function buildNodes(){
   EVENTS.forEach((e,i)=>{
     const grp=document.createElementNS(NS,"g");
     grp.setAttribute("class","node");grp.setAttribute("tabindex","0");grp.setAttribute("role","img");grp.setAttribute("data-i",i);
-    grp.setAttribute("aria-label",`${e.event}. Coverage ${e.coverage.toFixed(2)}, Resonance ${e.resonance.toFixed(2)}, Score ${e.score.toFixed(2)}. ${e.quad.label}.`);
+    grp.setAttribute("aria-label",`${e.event}. Coverage ${e.coverage.toFixed(2)}, Resonance ${e.resonance.toFixed(2)}, Score ${fmtScore(e.score)}. ${e.quad.label}.`);
     const cx=sx(Math.min(e.coverage,X_MAX)),cy=sy(e.resonance),r=rOf(e.volume);
     grp.innerHTML=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${e.quad.fill}" fill-opacity="0.82" stroke="${e.quad.ink}" stroke-width="1.2"></circle>`;
     const show=()=>showTip(e,cx,cy);
@@ -902,7 +931,7 @@ function drawRadar(cat){
   document.getElementById('catName').textContent=cat;
   document.getElementById('catStats').innerHTML=`
     <div class="cs"><div class="lab">Events</div><div class="v data">${sel.n}</div></div>
-    <div class="cs"><div class="lab">Avg score</div><div class="v data">${sel.scoreRaw.toFixed(2)}</div></div>
+    <div class="cs"><div class="lab">Avg score</div><div class="v data">${fmtScore(sel.scoreRaw)}</div></div>
     <div class="cs"><div class="lab">Avg coverage</div><div class="v data">${sel.covRaw.toFixed(2)}</div></div>
     <div class="cs"><div class="lab">Avg resonance</div><div class="v data">${sel.resRaw.toFixed(2)}</div></div>`;
   document.getElementById('catSoWhat').innerHTML=SOWHAT[cat]||"";
@@ -931,7 +960,7 @@ function renderTable(){
       <td class="barcell"><div class="barval data">${e.resonance.toFixed(2)}</div><div class="bar"><span style="width:${resW}%;background:#AF46B4"></span></div></td>
       <td class="num data hide-sm">${fmtVol(e.volume)}</td>
       <td class="num data hide-sm" style="color:${nsCol}">${e.ns>0?'+':''}${e.ns}</td>
-      <td class="num"><span class="score-pill data" style="color:${e.quad.ink}">${e.score.toFixed(2)}</span></td>
+      <td class="num"><span class="score-pill data" style="color:${e.quad.ink}">${fmtScore(e.score)}</span></td>
     </tr>`;
   }).join("");
   applyFilter();
@@ -961,11 +990,37 @@ function buildSpotlights(){
   const card=(cls,tag,e,why)=>`<div class="spot ${cls}"><div class="tagline">${tag}</div><h3>${e.event}</h3><div class="why">${why}</div>
     <div class="foot"><div class="m"><span class="lab">Coverage</span><span class="v data">${e.coverage.toFixed(2)}</span></div>
     <div class="m"><span class="lab">Resonance</span><span class="v data">${e.resonance.toFixed(2)}</span></div>
-    <div class="m"><span class="lab">Score</span><span class="v data">${e.score.toFixed(2)}</span></div></div></div>`;
+    <div class="m"><span class="lab">Score</span><span class="v data">${fmtScore(e.score)}</span></div></div></div>`;
   document.getElementById('spotGrid').innerHTML=
     card("defining","Defining story",defining,"The quarter's clearest case of scale meeting attention: heavy Tier 1 coverage that readers actually engaged with.")+
     card("sleeper","Sleeper story",sleeper,"Barely a blip in coverage volume, yet the articles that ran landed hard. The kind of moment comms teams under-rate.")+
     card("shallow","Broad but shallow",shallow,"Enormous, Tier 1-heavy coverage that audiences largely scrolled past. Loud on the wire, quiet in the feed.");
+}
+/* ---------------- DWELL TIME ---------------- */
+/* avg time on page (seconds), from Signal AI + Memo Q2 2026 macro-trends dataset */
+const DWELL={
+ "Met Gala":226,"NBA Finals":214,"Nancy Guthrie Disappearance":211,"Hantavirus":184,
+ "Epstein Files":181,"Memorial Day":177,"USA 250th Birthday":166,"Venezuela / Maduro capture":165,
+ "FIFA World Cup":159,"Russia-Ukraine War":132,"SpaceX IPO":123,"US-Iran War":123
+};
+function fmtDwell(s){const m=Math.floor(s/60);return m?`${m}m ${s%60}s`:`${s}s`;}
+function buildDwell(){
+  const rows=Object.keys(DWELL).map(name=>({name,s:DWELL[name],e:EVENTS.find(x=>x.event===name)}))
+    .sort((a,b)=>b.s-a.s);
+  const max=Math.max(...rows.map(r=>r.s));
+  document.getElementById('dwellList').innerHTML=rows.map(r=>{
+    const fill=r.e?r.e.quad.fill:"#6446FF", cat=r.e?r.e.cat:"";
+    return `<div class="dwell-row" data-name="${r.name}" role="button" tabindex="0" aria-label="${r.name}: ${fmtDwell(r.s)} average time on page">
+      <div class="nm">${r.name}<small>${cat}</small></div>
+      <div class="track"><span style="width:${(r.s/max*100).toFixed(1)}%;background:${fill}"></span></div>
+      <div class="val data">${fmtDwell(r.s)}<small> avg</small></div>
+    </div>`;
+  }).join("");
+  document.querySelectorAll('#dwellList .dwell-row').forEach(row=>{
+    const go=()=>flashRow(row.dataset.name);
+    row.addEventListener('click',go);
+    row.addEventListener('keydown',ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();go();}});
+  });
 }
 /* ---------------- METHOD WEIGHTS ---------------- */
 function buildWeights(){
@@ -989,7 +1044,7 @@ function initForm(){
   });
 }
 /* ---------------- INIT ---------------- */
-renderPlot();buildTimeline();buildChips();buildRadarChips();initSort();renderTable();buildSpotlights();buildWeights();initForm();
+renderPlot();buildTimeline();buildChips();buildRadarChips();initSort();renderTable();buildSpotlights();buildDwell();buildWeights();initForm();
 </script>
 </body>
 </html>
